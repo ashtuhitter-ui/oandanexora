@@ -1,0 +1,25 @@
+name = "oanda-charts"
+main = "src/worker.js"
+compatibility_date = "2026-04-07"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[durable_objects.bindings]]
+name = "PRICE_HUB"
+class_name = "PriceHub"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["PriceHub"]
+
+# Secrets are NOT set here - never put OANDA_API_KEY or OANDA_ACCOUNT_ID
+# in this file. Set them after deploying with:
+#   wrangler secret put OANDA_API_KEY
+#   wrangler secret put OANDA_ACCOUNT_ID
+#
+# Non-secret config can stay here:
+[vars]
+OANDA_ENV = "practice"
